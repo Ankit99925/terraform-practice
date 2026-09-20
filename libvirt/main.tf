@@ -77,7 +77,7 @@ resource "libvirt_domain" "vm" {
   os = {
     type         = "hvm"
     type_arch    = "x86_64"
-    type_machine = "pc-q35-6.2"
+    type_machine = "pc-i440fx-resolute"
   }
 
   devices = {
