@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and set for your machine.
+
+qemu_uid = "64055"   # id -u libvirt-qemu
+kvm_gid  = "991"     # getent group kvm | cut -d: -f3
+
+# vm_user      = "ubuntu"
+# machine_type = "pc-i440fx-resolute"   # qemu-system-x86_64 -machine help

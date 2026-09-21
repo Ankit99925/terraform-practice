@@ -15,8 +15,8 @@ resource "libvirt_pool" "default" {
   target = {
     path = "/var/lib/libvirt/tfpool"
     permissions = {
-      owner = "64055"
-      group = "991"
+      owner = var.qemu_uid
+      group = var.kvm_gid
       mode  = "0711"
     }
   }
@@ -37,8 +37,8 @@ resource "libvirt_volume" "base" {
       type = "qcow2"
     }
     permissions = {
-      owner = "64055"
-      group = "991"
+      owner = var.qemu_uid
+      group = var.kvm_gid
       mode  = "0660"
     }
   }
@@ -55,8 +55,8 @@ resource "libvirt_volume" "vm_disk" {
       type = "qcow2"
     }
     permissions = {
-      owner = "64055"
-      group = "991"
+      owner = var.qemu_uid
+      group = var.kvm_gid
       mode  = "0660"
     }
   }
@@ -77,7 +77,7 @@ resource "libvirt_domain" "vm" {
   os = {
     type         = "hvm"
     type_arch    = "x86_64"
-    type_machine = "pc-i440fx-resolute"
+    type_machine = var.machine_type
   }
 
   devices = {
@@ -167,3 +167,15 @@ variable "ssh_key_path" {
   type        = string
   default     = "~/.ssh/id_ed25519.pub"
 }
+
+variable "qemu_uid" {
+  type        = string
+  description = "UID of libvirt-qemu: id -u libvirt-qemu"
+}
+
+variable "kvm_gid" {
+  type        = string
+  description = "GID of the kvm group: getent group kvm | cut -d: -f3"
+}
+
+variable "machine_type" { default = "pc-i440fx-resolute" }
