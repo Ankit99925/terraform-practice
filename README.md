@@ -50,3 +50,5 @@ is one the provider fills in; you can read it but not set it.
 **Destroy and rebuild to prove a config.** A configuration that only works
 because of something you once did by hand is not reproducible. The `gcp` and
 `lab` projects have both been through this; `libvirt` never passed it.
+
+> The lab moved to its own repo, **opnsense-iac-lab** (history included).
